@@ -1,22 +1,33 @@
-const Node = require('./Node');
-
-class DoublyLinkedList {
-  // Create your constructor below:
-  constructor() {
-    this.head = null;
-    this.tail = null;
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.next = null;
+    this.previous = null;
   }
-  
-  printList() {
-    let currentNode = this.head;
-    let output = '<head> ';
-    while (currentNode !== null) {
-      output += currentNode.data + ' ';
-      currentNode = currentNode.getNextNode();
+
+  setNextNode(node) {
+    if (node instanceof Node || node === null) {
+      this.next = node;
+    } else {
+      throw new Error('Next node must be a member of the Node class')
     }
-    output += '<tail>';
-    console.log(output);
+  }
+
+  setPreviousNode(node) {
+    if (node instanceof Node || node === null) {
+      this.previous = node;
+    } else {
+      throw new Error('Previous node must be a member of the Node class')
+    }
+  }
+
+  getNextNode() {
+    return this.next;
+  }
+
+  getPreviousNode() {
+    return this.previous;
   }
 }
 
-module.exports = DoublyLinkedList;
+module.exports = Node;
